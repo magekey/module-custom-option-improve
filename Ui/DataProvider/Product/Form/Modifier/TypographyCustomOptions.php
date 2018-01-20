@@ -36,16 +36,18 @@ class TypographyCustomOptions extends AbstractModifier
      */
     protected function createTypographyCustomOptions()
     {
-        $this->meta = array_replace_recursive(
-            $this->meta,
-            [
-                CustomOptions::GROUP_CUSTOM_OPTIONS_NAME => [
-                    'children' => [
-                        CustomOptions::GRID_OPTIONS_NAME => $this->getOptionsGridConfig()
+        if (isset($this->meta[CustomOptions::GROUP_CUSTOM_OPTIONS_NAME])) {
+            $this->meta = array_replace_recursive(
+                $this->meta,
+                [
+                    CustomOptions::GROUP_CUSTOM_OPTIONS_NAME => [
+                        'children' => [
+                            CustomOptions::GRID_OPTIONS_NAME => $this->getOptionsGridConfig()
+                        ]
                     ]
                 ]
-            ]
-        );
+            );
+        }
 
         return $this;
     }
